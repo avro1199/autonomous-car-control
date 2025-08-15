@@ -29,7 +29,7 @@ int target_angle = 0; // Variable to store the target angle
 // pid variables
 float kp = 6, ki = 1.0, kd = 0; // PID coefficients
 int previous_error = 0;         // Previous error for PID
-int integral = 0;               // Integral term for PID
+float integral = 0;               // Integral term for PID
 
 uint8_t speed = 0; // Speed variable for motor control
 
@@ -175,12 +175,13 @@ void loop()
 
     // Calculate PID control
     int error = target_angle - current_angle; // Calculate error
-    if (abs(error) < 2)                       // If error is small, reset integral term
-    {
-        // ki = 0; // Reset integral term if error is zero
-        integral = 0; // Reset integral term
-    }
+    // if (abs(error) < 2)                       // If error is small, reset integral term
+    // {
+    //     // ki = 0; // Reset integral term if error is zero
+    //     integral = 0; // Reset integral term
+    // }
     integral += error;                                         // Update integral term
+    integral =  constrain(integral,-limit*1.0/ki,limit*1.0/ki);
     int derivative = error - previous_error;                   // Calculate derivative term
     int output = kp * error + ki * integral + kd * derivative; // PID output
     previous_error = error;                                    // Update previous error for next iteration

@@ -1,4 +1,6 @@
 {
     "port": "COM9",
-    "board": "STMicroelectronics:stm32:Nucleo_64"
+    "board": "STMicroelectronics:stm32:Nucleo_64",
+    "configuration": "pnum=NUCLEO_F446RE,upload_method=swdMethod,xserial=generic,usb=CDCgen,xusb=FS,opt=osstd,dbg=none,rtlib=nano",
+    "sketch": "Car_Full_Control_STM\\Car_Full_Control_STM.ino"
 }

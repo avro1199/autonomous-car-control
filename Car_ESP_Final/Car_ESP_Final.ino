@@ -139,3 +139,9 @@ int measure_angle()
     // SerialBT.println(" degrees");
     return analogValue; // Return the target angle
 }
+
+void reset_pid()
+{
+    previous_error = 0;
+    integral = 0;
+}
